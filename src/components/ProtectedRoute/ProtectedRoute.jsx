@@ -1,20 +1,13 @@
-import { Route, Navigate } from "react-router-dom";
-import PropTypes from "prop-types";
+import { Navigate, Outlet } from "react-router-dom";
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const isAuthenticated = !!localStorage.getItem("token");
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        isAuthenticated ? <Component {...props} /> : <Navigate to="/login" />
-      }
-    />
-  );
-};
+const ProtectedRoute = () => {
+  const isAuthenticated = document.cookie
+    .split("; ")
+    .some((row) => row.startsWith("auth_status=authenticated"));
 
-ProtectedRoute.propTypes = {
-  component: PropTypes.elementType.isRequired,
+  console.log("ProtectedRoute: isAuthenticated:", isAuthenticated);
+
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default ProtectedRoute;
