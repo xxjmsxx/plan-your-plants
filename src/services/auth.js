@@ -16,3 +16,8 @@ export const logout = async () => {
     console.error("Logout error:", error);
   }
 };
+
+export const getCurrentUser = async () => {
+  const response = await api.get("/current_user_info");
+  return response.data;
+};
