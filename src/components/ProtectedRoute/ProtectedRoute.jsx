@@ -5,8 +5,6 @@ const ProtectedRoute = () => {
     .split("; ")
     .some((row) => row.startsWith("auth_status=authenticated"));
 
-  console.log("ProtectedRoute: isAuthenticated:", isAuthenticated);
-
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 };
 

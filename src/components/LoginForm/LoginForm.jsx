@@ -1,6 +1,7 @@
+// src/components/LoginForm.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../services/auth";
+import api from "../../services/api";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await login(email, password);
+      await api.post("/login", { email, password });
       navigate("/dashboard");
     } catch (error) {
       console.error("Login error:", error);
