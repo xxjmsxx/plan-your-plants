@@ -6,12 +6,11 @@ const Login = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const jwtCookie = document.cookie
+    const auth = document.cookie
       .split("; ")
-      .find((row) => row.startsWith("jwt"))
-      ?.split("=")[1];
+      .find((row) => row.startsWith("auth"));
 
-    if (jwtCookie) {
+    if (auth) {
       setIsAuthenticated(true);
     }
   }, []);

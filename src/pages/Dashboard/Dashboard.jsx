@@ -9,8 +9,10 @@ const Dashboard = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
-    dispatch(fetchCurrentUser());
-  }, [dispatch]);
+    if (!currentUser) {
+      dispatch(fetchCurrentUser());
+    }
+  }, [dispatch, currentUser]);
 
   return (
     currentUser && (
