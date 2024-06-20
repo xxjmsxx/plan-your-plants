@@ -1,11 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ProtectedRoute = () => {
-  const isAuthenticated = document.cookie
-    .split("; ")
-    .some((row) => row.startsWith("auth_status=authenticated"));
+  const { loggedIn } = useSelector((state) => state.auth);
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+  return loggedIn ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default ProtectedRoute;

@@ -1,26 +1,16 @@
-import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm";
+import { useSelector } from "react-redux";
 
 const Login = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { loggedIn } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    const auth = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("auth"));
-
-    if (auth) {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  if (isAuthenticated) {
+  if (loggedIn) {
     return <Navigate to="/dashboard" />;
   }
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
       <LoginForm />
     </div>
