@@ -1,0 +1,12 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #59c3c3 !important; /* Light Purple */
+  margin: 0 !important;
+}
+
+.garden-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+}

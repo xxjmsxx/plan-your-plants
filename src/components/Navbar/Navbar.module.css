@@ -1,0 +1,52 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f42272; /* Your primary color */
+  color: white;
+  padding: 1rem;
+}
+
+.brand h1 {
+  margin: 0;
+}
+
+.dropdownToggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+}
+
+.navLinks {
+  list-style-type: none;
+  display: flex;
+  background-color: #f42272; /* Your primary color */
+  z-index: 1000; /* Ensure dropdown is above other content */
+}
+
+.navLinks.showDropdown {
+  display: block; /* Show dropdown when .showDropdown class is applied */
+}
+
+.navLink {
+  text-decoration: none;
+  color: white;
+  display: block;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .dropdownToggle {
+    display: block; /* Show toggle button for mobile */
+  }
+
+  .navLinks {
+    flex-direction: column;
+  }
+
+  .navLink {
+    padding: 0.5rem 0;
+  }
+}
