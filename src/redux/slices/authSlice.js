@@ -1,24 +1,40 @@
-// src/redux/slices/authSlice.js
-import { createSlice } from "@reduxjs/toolkit";
+// redux/slices/authSlice.js
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import api from "../../services/api";
 
+// Async thunk to fetch logged-in status
+export const fetchLoggedInStatus = createAsyncThunk(
+  "auth/fetchLoggedInStatus",
+  async () => {
+    const response = await api.get("/is_logged_in");
+    return response.data.logged_in;
+  }
+);
+
+// Slice
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: null,
-    isAuthenticated: false,
+    loggedIn: false,
+    loading: false,
+    error: null,
   },
-  reducers: {
-    setUser: (state, action) => {
-      state.user = action.payload;
-      state.isAuthenticated = true;
-    },
-    clearUser: (state) => {
-      state.user = null;
-      state.isAuthenticated = false;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchLoggedInStatus.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchLoggedInStatus.fulfilled, (state, action) => {
+        state.loading = false;
+        state.loggedIn = action.payload;
+      })
+      .addCase(fetchLoggedInStatus.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
-
-export const { setUser, clearUser } = authSlice.actions;
 
 export default authSlice.reducer;
