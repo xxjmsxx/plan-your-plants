@@ -1,6 +1,6 @@
 const PlantCard = ({ plant }) => {
   return (
-    <div>
+    <div className="card m-3 p-2">
       <h1>{plant.name}</h1>
       <p>Description: {plant.description}</p>
       <p>Water Amount: {plant.water_amount}</p>

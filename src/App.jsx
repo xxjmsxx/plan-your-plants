@@ -16,8 +16,10 @@ const App = () => {
   const { loggedIn } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchLoggedInStatus());
-  }, [dispatch]);
+    if (!loggedIn) {
+      dispatch(fetchLoggedInStatus());
+    }
+  }, [dispatch, loggedIn]);
 
   useEffect(() => {
     if (loggedIn) {
