@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import api from "../../services/api";
-import { fetchLoggedInStatus } from "../../redux/slices/authSlice";
+import api from "../../../services/api";
+import { fetchLoggedInStatus } from "../../../redux/slices/authSlice";
 
 const LoginForm = () => {
   const navigate = useNavigate();
