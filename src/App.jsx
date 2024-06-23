@@ -13,7 +13,7 @@ import { fetchCurrentUser } from "./redux/slices/currentUserSlice.js";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { loggedIn } = useSelector((state) => state.auth);
+  const { loggedIn, loading } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!loggedIn) {
@@ -26,6 +26,10 @@ const App = () => {
       dispatch(fetchCurrentUser());
     }
   }, [loggedIn, dispatch]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Router>

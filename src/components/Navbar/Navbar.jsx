@@ -36,7 +36,7 @@ const Navbar = () => {
               to="/my-garden"
               className={styles.navLink}
             >
-              My Garden
+              My Gardens
             </NavLink>
           </li>
           <li>
